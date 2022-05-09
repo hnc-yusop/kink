@@ -23,3 +23,9 @@ kubeadmConfigPatches:
     kubeletExtraArgs:
       cgroup-root: "/kubelet"
 kubeadmConfigPatchesJSON6902:
+
+nodes:
+- role: control-plane
+- role: worker
+- role: worker
+- role: worker

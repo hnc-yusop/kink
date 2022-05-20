@@ -18,7 +18,7 @@ package types
 
 const (
 	NodeImageRepository = "trendyoltech/kind-node"
-	ImageRepository     = "trendyoltech/kind-cluster"
+	ImageRepository     = "stg-orca-harbor.cloud.hancom.com/cluster-test/kind"
 	NodeImageTag        = "1.21.2"
 	ImageTag            = "v0.0.1"
 )

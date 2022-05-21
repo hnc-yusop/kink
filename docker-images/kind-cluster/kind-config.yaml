@@ -22,5 +22,4 @@ kubeadmConfigPatches:
   nodeRegistration:
     kubeletExtraArgs:
       cgroup-root: "/kubelet"
-kubeadmConfigPatchesJSON6902:
       node-labels: "ingress-ready=true"

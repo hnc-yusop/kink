@@ -23,3 +23,12 @@ kubeadmConfigPatches:
     kubeletExtraArgs:
       cgroup-root: "/kubelet"
 kubeadmConfigPatchesJSON6902:
+      node-labels: "ingress-ready=true"
+  extraPortMappings:
+  - containerPort: 80
+    hostPort: 30002
+    protocol: TCP
+  - containerPort: 443
+    hostPort: 30003
+    protocol: TCP
+

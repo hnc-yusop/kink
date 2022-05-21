@@ -26,6 +26,7 @@ nodes:
       kubeletExtraArgs:
         cgroup-root: "/kubelet"
   kubeadmConfigPatchesJSON6902:
+      kubeletExtraArgs:
         node-labels: "ingress-ready=true"    
   extraPortMappings:
   - containerPort: 80

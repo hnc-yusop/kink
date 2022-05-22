@@ -15,6 +15,7 @@ nodes:
       name: config
     nodeRegistration:
       kubeletExtraArgs:
+        cgroup-root: "/kubelet"
   - |
     kind: InitConfiguration
     nodeRegistration:

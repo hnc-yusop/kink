@@ -311,7 +311,7 @@ func NewCmdRun() *cobra.Command {
 						},
 					},
 					Selector: labels,
-					Type:     corev1.ServiceType("ClientIP"),
+					Type:     corev1.ServiceType("ClusterIP"),
 				},
 			}
 

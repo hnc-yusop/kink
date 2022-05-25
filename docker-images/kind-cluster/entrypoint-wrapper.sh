@@ -34,6 +34,6 @@ cat <<EOF >> kind-config.yaml
 EOF
 done
 
-#kind create cluster --name=${KIND_CLUSTER_NAME:-""} --log-level=debug --config=kind-config.yaml --image=${KIND_NODE_IMAGE-"registry.trendyol.com/platform/base/image/kind-node:v1.21.2"} --wait=900s
+kind create cluster --name=${KIND_CLUSTER_NAME:-""} --log-level=debug --config=kind-config.yaml --image=${KIND_NODE_IMAGE-"registry.trendyol.com/platform/base/image/kind-node:v1.21.2"} --wait=900s
 
 exec "$@"

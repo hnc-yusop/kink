@@ -285,7 +285,11 @@ func NewCmdRun() *cobra.Command {
 				return err
 			}
 
-			//kubeconfig = strings.ReplaceAll(kubeconfig, podIP, hostIP)
+			_ = podIP
+			_ = hostIP
+			/*
+			kubeconfig = strings.ReplaceAll(kubeconfig, podIP, hostIP)
+			*/
 
 			serviceClient := client.CoreV1().Services(namespace)
 
@@ -340,7 +344,10 @@ func NewCmdRun() *cobra.Command {
 			}
 
 			nodePort := svc.Spec.Ports[0].NodePort
-			//kubeconfig = strings.ReplaceAll(kubeconfig, "30001", fmt.Sprint(nodePort))
+			_ = nodePort
+			/*
+			kubeconfig = strings.ReplaceAll(kubeconfig, "30001", fmt.Sprint(nodePort))
+			*/
 
 			kubeconfigPath := filepath.Join(outputPath, "kubeconfig")
 

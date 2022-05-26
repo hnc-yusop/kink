@@ -24,11 +24,4 @@ nodes:
       kubeletExtraArgs:
         node-labels: "ingress-ready=true"    
         cgroup-root: "/kubelet"
-  extraPortMappings:
-  - containerPort: 80
-    hostPort: 80
-    protocol: TCP
-  - containerPort: 443
-    hostPort: 443
-    protocol: TCP
   kubeadmConfigPatchesJSON6902:

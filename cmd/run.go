@@ -274,7 +274,6 @@ func NewCmdRun() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			_ = kubeconfig
 
 			hostIP, err := doExec(name, namespace, []string{"sh", "-c", "echo $CERT_SANS"})
 			if err != nil {

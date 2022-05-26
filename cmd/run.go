@@ -160,6 +160,7 @@ func NewCmdRun() *cobra.Command {
 										},
 									},
 								},
+								/*
 								{
 									Name: "CERT_SANS",
 									ValueFrom: &corev1.EnvVarSource{
@@ -168,6 +169,7 @@ func NewCmdRun() *cobra.Command {
 										},
 									},
 								},
+								*/
 								{
 									Name:  "KIND_CLUSTER_NAME",
 									Value: clusterName,
@@ -275,18 +277,19 @@ func NewCmdRun() *cobra.Command {
 				return err
 			}
 
+			/*
 			hostIP, err := doExec(name, namespace, []string{"sh", "-c", "echo $CERT_SANS"})
 			if err != nil {
 				return err
 			}
-
+*/
 			podIP, err := doExec(name, namespace, []string{"sh", "-c", "echo $API_SERVER_ADDRESS"})
 			if err != nil {
 				return err
 			}
 
 			_ = podIP
-			_ = hostIP
+			//_ = hostIP
 			/*
 			kubeconfig = strings.ReplaceAll(kubeconfig, podIP, hostIP)
 			*/

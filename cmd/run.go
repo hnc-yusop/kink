@@ -42,7 +42,7 @@ import (
 	"github.com/schollz/progressbar/v3"
 	"github.com/spf13/cobra"
 	corev1 "k8s.io/api/core/v1"
-	k8serrors "k8s.io/apimachinery/pkg/api/errors"
+	//k8serrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/intstr"
 	"k8s.io/apimachinery/pkg/util/uuid"
@@ -290,7 +290,7 @@ func NewCmdRun() *cobra.Command {
 			/*
 			kubeconfig = strings.ReplaceAll(kubeconfig, podIP, hostIP)
 			*/
-
+/*
 			serviceClient := client.CoreV1().Services(namespace)
 
 			// Create resource object
@@ -342,9 +342,9 @@ func NewCmdRun() *cobra.Command {
 					return fmt.Errorf("could not create service: %w", err)
 				}
 			}
-
 			nodePort := svc.Spec.Ports[0].NodePort
 			_ = nodePort
+*/
 			//kubeconfig = strings.ReplaceAll(kubeconfig, "30001", fmt.Sprint(nodePort))
 			kubeconfigPath := filepath.Join(outputPath, "kubeconfig")
 

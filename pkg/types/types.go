@@ -20,5 +20,5 @@ const (
 	NodeImageRepository = "trendyoltech/kind-node"
 	ImageRepository     = "stg-orca-harbor.cloud.hancom.com/cluster-test/kind-cluster"
 	NodeImageTag        = "1.21.2"
-	ImageTag            = "v0.0.38"
+	ImageTag            = "v0.0.39"
 )

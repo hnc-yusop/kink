@@ -22,19 +22,19 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
+	//"io/ioutil"
 	"log"
 	"net/url"
 	"os"
 	"os/user"
-	"path/filepath"
+	//"path/filepath"
 	"strings"
 	"time"
 
-	"github.com/ghodss/yaml"
-	"k8s.io/apimachinery/pkg/runtime"
-	"k8s.io/client-go/tools/clientcmd"
-	clientcmdapilatest "k8s.io/client-go/tools/clientcmd/api/latest"
+	//"github.com/ghodss/yaml"
+	//"k8s.io/apimachinery/pkg/runtime"
+	//"k8s.io/client-go/tools/clientcmd"
+	//clientcmdapilatest "k8s.io/client-go/tools/clientcmd/api/latest"
 
 	"github.com/Trendyol/kink/pkg/kubernetes"
 	"github.com/Trendyol/kink/pkg/types"
@@ -277,6 +277,8 @@ func NewCmdRun() *cobra.Command {
 				return err
 			}
 
+			_ = kubeconfig
+
 			/*
 			hostIP, err := doExec(name, namespace, []string{"sh", "-c", "echo $CERT_SANS"})
 			if err != nil {
@@ -351,6 +353,7 @@ func NewCmdRun() *cobra.Command {
 			_ = nodePort
 			//kubeconfig = strings.ReplaceAll(kubeconfig, "30001", fmt.Sprint(nodePort))
 */
+/*
 			kubeconfigPath := filepath.Join(outputPath, "kubeconfig")
 
 			dname, err := ioutil.TempDir("", "kink_kubeconfig")
@@ -400,6 +403,7 @@ $ kubectl logs -f %s -n %s
 KUBECONFIG file generated at path '%s'. 
 Start managing your internal KinD cluster by running the following command:
 $ KUBECONFIG=%s kubectl get nodes -o wide`, name, name, name, namespace, kubeconfigPath, kubeconfigPath)
+*/
 			return nil
 		},
 	}

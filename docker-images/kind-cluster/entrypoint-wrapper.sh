@@ -34,6 +34,6 @@ sed -i "s/apiServerAddress:$/apiServerAddress: ${API_SERVER_ADDRESS}/" kind-conf
 #EOF
 #done
 
-kind create cluster --name=${KIND_CLUSTER_NAME:-""} --config=kind-config.yaml --image=${KIND_NODE_IMAGE-"registry.trendyol.com/platform/base/image/kind-node:v1.21.2"} --wait=900s
+#kind create cluster --name=${KIND_CLUSTER_NAME:-""} --config=kind-config.yaml --image=${KIND_NODE_IMAGE-"registry.trendyol.com/platform/base/image/kind-node:v1.21.2"} --wait=900s
 
 exec "$@"

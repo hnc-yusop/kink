@@ -10,6 +10,8 @@ RUN curl -Lso /usr/bin/kubectl "https://storage.googleapis.com/kubernetes-releas
     chmod +x /usr/bin/kind
 
 COPY kind-config.yaml /kind-config.yaml
+COPY kind /usr/bin/kind
+RUN chmod +x /usr/bin/kind
 
 EXPOSE 30001
 

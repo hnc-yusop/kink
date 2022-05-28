@@ -2,7 +2,7 @@ ARG DOCKER_VERSION="20.10.8"
 FROM stg-orca-harbor.cloud.hancom.com/cluster-test/dind:${DOCKER_VERSION}
 
 ARG KUBECTL_VERSION="v1.21.2"
-ARG KIND_VERSION="v0.14.0"
+ARG KIND_VERSION="v0.11.1"
 
 RUN curl -Lso /usr/bin/kubectl "https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl" && \
     chmod +x /usr/bin/kubectl && \
@@ -10,10 +10,8 @@ RUN curl -Lso /usr/bin/kubectl "https://storage.googleapis.com/kubernetes-releas
     chmod +x /usr/bin/kind
 
 COPY kind-config.yaml /kind-config.yaml
-COPY kind /usr/bin/kind
-RUN chmod +x /usr/bin/kind
 
-#EXPOSE 30001
+EXPOSE 30001
 
 RUN mv /entrypoint.sh /entrypoint-original.sh
 COPY entrypoint-wrapper.sh /entrypoint.sh

@@ -147,7 +147,7 @@ func NewCmdRun() *cobra.Command {
 								{
 									Name:          "api-server-port",
 									HostPort:      0,
-									ContainerPort: 30005,
+									ContainerPort: 30006,
 									Protocol:      corev1.Protocol("TCP"),
 								},
 							},
@@ -303,10 +303,10 @@ func NewCmdRun() *cobra.Command {
 				Spec: corev1.ServiceSpec{
 					Ports: []corev1.ServicePort{
 						{
-							Port: 30005,
+							Port: 30006,
 							TargetPort: intstr.IntOrString{
 								Type:   intstr.Type(0),
-								IntVal: 30005,
+								IntVal: 30006,
 							},
 						},
 					},
@@ -340,7 +340,7 @@ func NewCmdRun() *cobra.Command {
 			}
 
 			nodePort := svc.Spec.Ports[0].NodePort
-			kubeconfig = strings.ReplaceAll(kubeconfig, "30005", fmt.Sprint(nodePort))
+			kubeconfig = strings.ReplaceAll(kubeconfig, "30006", fmt.Sprint(nodePort))
 
 			kubeconfigPath := filepath.Join(outputPath, "kubeconfig")
 

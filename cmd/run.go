@@ -22,19 +22,19 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
+	//"io/ioutil"
 	"log"
 	"net/url"
 	"os"
 	"os/user"
-	"path/filepath"
+	//"path/filepath"
 	"strings"
 	"time"
 
-	"github.com/ghodss/yaml"
-	"k8s.io/apimachinery/pkg/runtime"
-	"k8s.io/client-go/tools/clientcmd"
-	clientcmdapilatest "k8s.io/client-go/tools/clientcmd/api/latest"
+	//"github.com/ghodss/yaml"
+	//"k8s.io/apimachinery/pkg/runtime"
+	//"k8s.io/client-go/tools/clientcmd"
+	//clientcmdapilatest "k8s.io/client-go/tools/clientcmd/api/latest"
 
 	"github.com/Trendyol/kink/pkg/kubernetes"
 	"github.com/Trendyol/kink/pkg/types"
@@ -42,7 +42,7 @@ import (
 	"github.com/schollz/progressbar/v3"
 	"github.com/spf13/cobra"
 	corev1 "k8s.io/api/core/v1"
-	k8serrors "k8s.io/apimachinery/pkg/api/errors"
+	//k8serrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/intstr"
 	"k8s.io/apimachinery/pkg/util/uuid"
@@ -147,7 +147,7 @@ func NewCmdRun() *cobra.Command {
 								{
 									Name:          "api-server-port",
 									HostPort:      0,
-									ContainerPort: 30006,
+									ContainerPort: 30001,
 									Protocol:      corev1.Protocol("TCP"),
 								},
 							},
@@ -160,6 +160,7 @@ func NewCmdRun() *cobra.Command {
 										},
 									},
 								},
+								/*
 								{
 									Name: "CERT_SANS",
 									ValueFrom: &corev1.EnvVarSource{
@@ -168,6 +169,7 @@ func NewCmdRun() *cobra.Command {
 										},
 									},
 								},
+								*/
 								{
 									Name:  "KIND_CLUSTER_NAME",
 									Value: clusterName,
@@ -274,19 +276,26 @@ func NewCmdRun() *cobra.Command {
 			if err != nil {
 				return err
 			}
+			_ = kubeconfig
 
+			/*
 			hostIP, err := doExec(name, namespace, []string{"sh", "-c", "echo $CERT_SANS"})
 			if err != nil {
 				return err
 			}
-
+			*/
 			podIP, err := doExec(name, namespace, []string{"sh", "-c", "echo $API_SERVER_ADDRESS"})
 			if err != nil {
 				return err
 			}
 
+			_ = podIP
+			//_ = hostIP
+			/*
 			kubeconfig = strings.ReplaceAll(kubeconfig, podIP, hostIP)
+			*/
 
+			/*
 			serviceClient := client.CoreV1().Services(namespace)
 
 			// Create resource object
@@ -303,15 +312,15 @@ func NewCmdRun() *cobra.Command {
 				Spec: corev1.ServiceSpec{
 					Ports: []corev1.ServicePort{
 						{
-							Port: 30006,
+							Port: 30001,
 							TargetPort: intstr.IntOrString{
 								Type:   intstr.Type(0),
-								IntVal: 30006,
+								IntVal: 30001,
 							},
 						},
 					},
 					Selector: labels,
-					Type:     corev1.ServiceType("NodePort"),
+					Type:     corev1.ServiceType("ClusterIP"),
 				},
 			}
 
@@ -338,10 +347,11 @@ func NewCmdRun() *cobra.Command {
 					return fmt.Errorf("could not create service: %w", err)
 				}
 			}
-
 			nodePort := svc.Spec.Ports[0].NodePort
-			kubeconfig = strings.ReplaceAll(kubeconfig, "30006", fmt.Sprint(nodePort))
-
+			_ = nodePort
+*/
+/*
+			//kubeconfig = strings.ReplaceAll(kubeconfig, "30001", fmt.Sprint(nodePort))
 			kubeconfigPath := filepath.Join(outputPath, "kubeconfig")
 
 			dname, err := ioutil.TempDir("", "kink_kubeconfig")
@@ -382,7 +392,6 @@ func NewCmdRun() *cobra.Command {
 			if err != nil {
 				return err
 			}
-
 			fmt.Printf(`Thanks for using kink!
 Pod %s and Service %s created successfully!
 
@@ -392,6 +401,7 @@ $ kubectl logs -f %s -n %s
 KUBECONFIG file generated at path '%s'. 
 Start managing your internal KinD cluster by running the following command:
 $ KUBECONFIG=%s kubectl get nodes -o wide`, name, name, name, namespace, kubeconfigPath, kubeconfigPath)
+*/
 			return nil
 		},
 	}

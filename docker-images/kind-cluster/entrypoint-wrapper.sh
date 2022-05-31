@@ -24,13 +24,13 @@ UNIQUE_CERT_SANS=($(echo "${CERT_SANS[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '
 
 for hostname in "${UNIQUE_CERT_SANS[@]}"; do
 cat <<EOF >> kind-config.yaml
-- group: kubeadm.k8s.io
-  version: v1beta2
-  kind: ClusterConfiguration
-  patch: |
-    - op: add
-      path: /apiServer/certSANs/-
-      value: ${hostname}
+  - group: kubeadm.k8s.io
+    version: v1beta2
+    kind: ClusterConfiguration
+    patch: |
+      - op: add
+        path: /apiServer/certSANs/-
+        value: ${hostname}
 EOF
 done
 

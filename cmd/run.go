@@ -285,7 +285,13 @@ func NewCmdRun() *cobra.Command {
 				return err
 			}
 
+			// unused error 를 막기 위함
+			_ = podIP
+			_ = hostIP
+
+			/* NodePort 를 위해 사용한 코드인데, ClusterIP로 변경시에는 사용치 않음
 			kubeconfig = strings.ReplaceAll(kubeconfig, podIP, hostIP)
+			*/
 
 			serviceClient := client.CoreV1().Services(namespace)
 
@@ -311,7 +317,7 @@ func NewCmdRun() *cobra.Command {
 						},
 					},
 					Selector: labels,
-					Type:     corev1.ServiceType("NodePort"),
+					Type:     corev1.ServiceType("ClusterIP"),
 				},
 			}
 
@@ -340,7 +346,11 @@ func NewCmdRun() *cobra.Command {
 			}
 
 			nodePort := svc.Spec.Ports[0].NodePort
+                        // unused error 를 막기 위함
+			_ = nodePort
+			/* NodePort 를 위해 사용한 코드인데, ClusterIP로 변경시에는 사용치 않음 
 			kubeconfig = strings.ReplaceAll(kubeconfig, "30001", fmt.Sprint(nodePort))
+			*/
 
 			kubeconfigPath := filepath.Join(outputPath, "kubeconfig")
 

@@ -1,5 +1,5 @@
 ARG DOCKER_VERSION="20.10.8"
-FROM jieyu/dind-buster:v${DOCKER_VERSION}
+FROM stg-orca-harbor.cloud.hancom.com/cluster-test/dind:${DOCKER_VERSION}
 
 ARG KUBECTL_VERSION="v1.21.2"
 ARG KIND_VERSION="v0.11.1"
